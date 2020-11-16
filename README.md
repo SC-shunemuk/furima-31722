@@ -21,22 +21,22 @@ has_many :comments
 
 
 ## items
-| Column          | Type    | Options       |
-| --------------- | ------- | ------------- |
-| name            | string  | null: false   |
-| content         | text    | null: false   |
-| price           | integer | null: false   |
-| category        | integer | null: false   |
-| status          | integer | null: false   |
-| shipping_address| integer | null: false   |
-| shipping_day    | integer | null: false   |
-| user            |reference| foreign: true |
+| Column             | Type    | Options       |
+| ------------------ | ------- | ------------- |
+| name               | string  | null: false   |
+| content            | text    | null: false   |
+| price              | integer | null: false   |
+| category_id        | integer | null: false   |
+| status_id          | integer | null: false   |
+| shipping_address_id| integer | null: false   |
+| shipping_day_id    | integer | null: false   |
+| user               |reference| foreign: true |
 
 ### Association
 
 belongs_to :user
 has_many   :comments
-has_one    :purchases
+has_one    :purchase
 has_one    :address
 
 ## purchases
@@ -49,12 +49,13 @@ has_one    :address
 
 belongs_to :user
 belongs_to :item
+has_one    :address
 
 ## addresses
 | Column          | Type    | Options                        |
 | --------------- | ------- | ------------------------------ |
 | address_code    | string  | null: false                    |
-| prefecture      | integer | null: false                    |
+| prefecture_id   | integer | null: false                    |
 | city            | string  | null: false                    |
 | second_city     | string  | null: false                    |
 | address_number  | string  | null: false                    |
@@ -64,6 +65,7 @@ belongs_to :item
 ### Association
 
 belongs_to :item
+belongs_to :purchase
 
 ## comments
 | Column          | Type    | Options                        |
