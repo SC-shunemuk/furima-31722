@@ -5,7 +5,6 @@
 | ----------------- | ------ | ----------- |
 | nickname          | string | null: false |
 | email             | string | null: false |
-| password          | string | null: false |
 | encrypted_password| string | null: false |
 | first_name        | string | null: false |
 | last_name         | string | null: false |
@@ -21,24 +20,23 @@ has_many :comments
 
 
 ## items
-| Column             | Type    | Options       |
-| ------------------ | ------- | ------------- |
-| name               | string  | null: false   |
-| content            | text    | null: false   |
-| price              | integer | null: false   |
-| category_id        | integer | null: false   |
-| status_id          | integer | null: false   |
-| bear_price         | integer | null: false   |
-| shipping_address_id| integer | null: false   |
-| shipping_day_id    | integer | null: false   |
-| user               |reference| foreign: true |
+| Column             | Type    | Options           |
+| ------------------ | ------- | ----------------- |
+| name               | string  | null: false       |
+| content            | text    | null: false       |
+| price              | integer | null: false       |
+| category_id        | integer | null: false       |
+| status_id          | integer | null: false       |
+| bear_price         | integer | null: false       |
+| shipping_address_id| integer | null: false       |
+| shipping_day_id    | integer | null: false       |
+| user               |reference| foreign_key: true |
 
 ### Association
 
 belongs_to :user
 has_many   :comments
 has_one    :purchase
-has_one    :address
 
 ## purchases
 | Column          | Type    | Options                        |
@@ -58,14 +56,13 @@ has_one    :address
 | address_code    | string  | null: false                    |
 | prefecture_id   | integer | null: false                    |
 | city            | string  | null: false                    |
-| second_city     | string  | null: false                    |
 | address_number  | string  | null: false                    |
 | house_name      | string  |                                |
 | tel             | string  | null: false, unique: true      |
+| purchase        |reference| null:false, foreign_key: true  |
 
 ### Association
 
-belongs_to :item
 belongs_to :purchase
 
 ## comments
