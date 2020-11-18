@@ -9,32 +9,6 @@ RSpec.describe User, type: :model do
       it 'nicknameとemail、passwordとpassword_confirmation、first_nameとlast_name、first_name_kanaとlast_name_kana、birth_dateが存在すれば登録できる' do
         expect(@user).to be_valid
       end
-      it 'passwordが6文字以上であれば登録できる' do
-        @user.password = 'a00000'
-        @user.password_confirmation = 'a00000'
-        expect(@user).to be_valid
-      end
-      it 'passwordが英数字を両方使用していれば登録できる' do
-        @user.password = 'k11111'
-        @user.password_confirmation = 'k11111'
-        expect(@user).to be_valid
-      end
-      it 'first_nameが漢字、ひらがな、カタカナを使用していれば登録できる' do
-        @user.first_name = '阿あア'
-        expect(@user).to be_valid
-      end
-      it 'last_nameが漢字、ひらがな、カタカナを使用していれば登録できる' do
-        @user.last_name = '和わワ'
-        expect(@user).to be_valid
-      end
-      it 'first_name_kanaがカタカナのみを使用していれば登録できる' do
-        @user.first_name_kana = 'ア'
-        expect(@user).to be_valid
-      end
-      it 'last_name_kanaがカタカナのみを使用していれば登録できる' do
-        @user.last_name_kana = 'ワ'
-        expect(@user).to be_valid
-      end
     end
     context '新規登録がうまくいかなとき' do
       it 'nicknameが空だと登録できない' do
@@ -48,7 +22,11 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include "Email can't be blank"
       end
-
+      it 'emailに@が含まれていないと登録できない' do
+        @user.email = 'akacom'
+        @user.valid?
+        expect(@user.errors.full_messages).to include 'Email is invalid'
+      end
       it '重複したemailが存在する場合登録できない' do
         @user.save
         another_user = FactoryBot.build(:user)
@@ -69,12 +47,17 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include 'Password is too short (minimum is 6 characters)'
       end
 
-      it 'passwordが英数字の片方しか使っていないと登録できない' do
+      it 'passwordが数字のみだと登録できない' do
         @user.password = '000000'
         @user.valid?
         expect(@user.errors.full_messages).to include 'Password is invalid'
       end
 
+      it 'passwordが英字のみだと登録できない' do
+        @user.password = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include 'Password is invalid'
+      end
       it 'passwordが存在してもpassword_confirmationが空では登録できない' do
         @user.password_confirmation = ''
         @user.valid?

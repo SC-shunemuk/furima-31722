@@ -4,7 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   with_options presence: true do
-    
     with_options format: { with: /\A[ぁ-んァ-ン一-龥]/ } do
       validates :first_name
       validates :last_name
@@ -17,8 +16,7 @@ class User < ApplicationRecord
 
     validates :birth_date
     validates :nickname
-  
   end
-  
+
   validates :password, format: { with: /[a-zA-Z]+[0-9]/ }
 end
