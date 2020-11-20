@@ -27,7 +27,7 @@ has_many :comments
 | price              | integer | null: false       |
 | category_id        | integer | null: false       |
 | status_id          | integer | null: false       |
-| bear_price         | integer | null: false       |
+| bear_price_id      | integer | null: false       |
 | shipping_address_id| integer | null: false       |
 | shipping_day_id    | integer | null: false       |
 | user               |reference| foreign_key: true |
