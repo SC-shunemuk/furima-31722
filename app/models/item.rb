@@ -20,7 +20,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_address
   belongs_to :shipping_day
 
-  with_options numericality: {other_than: 1} do
+  with_options numericality: { other_than: 1 } do
     validates :category_id
     validates :status_id
     validates :bear_price_id
