@@ -1,4 +1,4 @@
-FactoryBot.define do
+  FactoryBot.define do
   factory :item do
     image               { Rack::Test::UploadedFile.new(File.join(Rails.root, 'app/assets/images/flag.png')) }
     name                { Faker::Name.initials(number: 2) }

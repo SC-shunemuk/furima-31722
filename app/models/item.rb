@@ -27,4 +27,6 @@ class Item < ApplicationRecord
     validates :shipping_address_id
     validates :shipping_day_id
   end
+
+  default_scope { order(created_at: :desc) }
 end
