@@ -55,7 +55,7 @@ has_one    :address
 | --------------- | ------- | ------------------------------ |
 | address_code    | string  | null: false                    |
 | prefecture_id   | integer | null: false                    |
-| city            | string  | null: false                    |
+| city            | string  | null: false  :                  |
 | address_number  | string  | null: false                    |
 | house_name      | string  |                                |
 | tel             | string  | null: false, unique: true      |
