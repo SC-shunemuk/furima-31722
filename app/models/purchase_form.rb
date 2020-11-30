@@ -3,13 +3,11 @@ class PurchaseForm
   attr_accessor :address_code, :prefecture, :city, :address_number, :house_name, :tel
 
   with_options presence: true do
-    validates :address_code, format: { with: /\A\d{3}[-]\d{4}\z/}
+    validates :address_code, format: { with: /\A\d{3}[-]\d{4}\z/ }
     validates :city, format: { with: /\A[ぁ-んァ-ン一-龥]/}
     validates :address_number
-    validates :house_name
-    validates :tel, format: { with: /^[0-9]+$/}
-    validates :prefecture, numericality:{ other_than: 0}
-
+    validates :tel, format: { with: /\A\d{10,11}\z/}
+    validates :prefecture, numericality:{ other_than: 1}
   end
 
   def save

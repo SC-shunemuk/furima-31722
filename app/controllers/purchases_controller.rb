@@ -1,14 +1,14 @@
 class PurchasesController < ApplicationController
   def index
     @item = Item.find(params[:item_id])
-    @purchase = Purchase.new
+    @purchase_form = PurchaseForm.new
   end
 
   def create
     @item = Item.find(params[:item_id])
-    @purchase = Purchase.new(purchase_params)   
-    if @purchase.valid?
-      @purchase.save
+    @purchase_form = PurchaseForm.new(purchase_params)   
+    if @purchase_form.valid?
+      @purchase_form.save
       redirect_to root_path
     else
       render action: :index
@@ -17,7 +17,7 @@ class PurchasesController < ApplicationController
   private
   
   def purchase_params
-    params.require(:purchase).permit(:address_code, :prefecture, :city, :address_number, :house_name, :tel)
+    params.permit(:address_code, :prefecture_id, :city, :address_number, :house_name, :tel)
   end
 
 
