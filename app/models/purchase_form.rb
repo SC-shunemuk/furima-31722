@@ -1,6 +1,6 @@
 class PurchaseForm
-  include Activemodel::Model
-  attr_accessor :address_code, :prefecture, :city, :address_number, :house_name, :tel,
+  include ActiveModel::Model
+  attr_accessor :address_code, :prefecture, :city, :address_number, :house_name, :tel
 
   with_options presence: true do
     validates :address_code, format: { with: /\A\d{3}[-]\d{4}\z/}
