@@ -1,4 +1,4 @@
-class OrderForm
+class PurchaseForm
   include Activemodel::Model
   attr_accessor :address_code, :prefecture, :city, :address_number, :house_name, :tel,
 
