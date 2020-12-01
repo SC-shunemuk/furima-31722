@@ -6,5 +6,6 @@ FactoryBot.define do
     house_name               {"青山ビル1F"}
     tel                      {Faker::Number.number(digits: 10)}
     prefecture_id            {2}
+    token                    {"tok_abcdefghijk00000000000000000"}
   end
 end

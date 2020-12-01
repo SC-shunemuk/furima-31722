@@ -6,7 +6,7 @@ RSpec.describe PurchaseForm, type: :model do
   end
   describe '商品の購入' do
     context '商品の購入がうまく行く時' do
-      it 'address_code、cityとaddress_number、telとprefectureが存在すれば登録できる' do
+      it 'address_code、cityとaddress_number、telとprefecture,tokenが存在すれば登録できる' do
         expect(@purchase_form).to be_valid
       end
     end
@@ -70,6 +70,12 @@ RSpec.describe PurchaseForm, type: :model do
         @purchase_form.prefecture_id = 1
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include "Prefecture must be other than 1"
+      end
+
+      it 'tokenが空では購入できないこと' do
+        @purchase_form.token = nil
+        @purchase_form.valid?
+        expect(@purchase_form.errors.full_messages).to include "Token can't be blank"
       end
     end
   end

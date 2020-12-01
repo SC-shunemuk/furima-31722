@@ -8,6 +8,7 @@ class PurchaseForm
     validates :address_number
     validates :tel, format: { with: /\A\d{10,11}\z/}
     validates :prefecture_id, numericality:{ other_than: 1}
+    validates :token
   end
 
   def save
