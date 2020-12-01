@@ -67,7 +67,7 @@ RSpec.describe PurchaseForm, type: :model do
       end
 
       it 'prefectureが未選択だと購入できない' do
-        @purchase_form.prefecture = 1
+        @purchase_form.prefecture_id = 1
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include "Prefecture must be other than 1"
       end

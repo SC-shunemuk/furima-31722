@@ -5,6 +5,6 @@ FactoryBot.define do
     address_number           {"青山1-1-1"}
     house_name               {"青山ビル1F"}
     tel                      {Faker::Number.number(digits: 10)}
-    prefecture               {2}
+    prefecture_id            {2}
   end
 end
