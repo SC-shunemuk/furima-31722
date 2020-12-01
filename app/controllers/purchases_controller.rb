@@ -5,8 +5,7 @@ class PurchasesController < ApplicationController
   end
 
   def create
-    @purchase_form = PurchaseForm.new(purchase_params)  
-    binding.pry 
+    @purchase_form = PurchaseForm.new(purchase_params)
     if @purchase_form.valid?
       @purchase_form.save
       redirect_to root_path
