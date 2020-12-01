@@ -1,11 +1,10 @@
 class PurchasesController < ApplicationController
+  before_action :set_item, only: [:index, :create]
   def index
-    @item = Item.find(params[:item_id])
     @purchase_form = PurchaseForm.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @purchase_form = PurchaseForm.new(purchase_params)   
     if @purchase_form.valid?
       @purchase_form.save
@@ -18,6 +17,10 @@ class PurchasesController < ApplicationController
   
   def purchase_params
     params.permit(:address_code, :prefecture_id, :city, :address_number, :house_name, :tel)
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 
 
