@@ -1,5 +1,7 @@
 class PurchasesController < ApplicationController
-  before_action :set_item, only: [:index, :create]
+  before_action :authenticate_user!
+  before_action :set_item, only: [:index, :create, :purchaser_to_index] 
+  before_action :purchaser_to_index
   def index
     @purchase_form = PurchaseForm.new
   end
@@ -33,6 +35,10 @@ class PurchasesController < ApplicationController
         currency: 'jpy'
       )
   end
-
-
+  
+  def purchaser_to_index
+    if current_user.id == @item.user_id
+      redirect_to root_path
+    end
+  end
 end
