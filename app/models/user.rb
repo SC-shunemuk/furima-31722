@@ -20,6 +20,6 @@ class User < ApplicationRecord
 
   validates :password, format: { with: /[a-zA-Z]+[0-9]/ }
 
-  has_many :items
-  has_many :purchases
+  has_many :items,dependent: :destroy
+  has_many :purchases,dependent: :destroy
 end

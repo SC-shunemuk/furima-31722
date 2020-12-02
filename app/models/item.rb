@@ -19,7 +19,7 @@ class Item < ApplicationRecord
   belongs_to :bear_price
   belongs_to :shipping_address
   belongs_to :shipping_day
-  has_one :purchase
+  has_one :purchase, dependent: :destroy
 
   with_options numericality: { other_than: 1 } do
     validates :category_id
