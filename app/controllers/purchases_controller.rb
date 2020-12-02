@@ -2,7 +2,7 @@ class PurchasesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create, :purchaser_to_index, :purchased_item]
   before_action :purchaser_to_index
-  before_action :purchased_item
+  before_action :purchased_item 
   def index
     @purchase_form = PurchaseForm.new
   end
@@ -38,10 +38,13 @@ class PurchasesController < ApplicationController
   end
 
   def purchaser_to_index
-    redirect_to root_path if current_user.id == @item.user_id
+    redirect_to root_path if current_user.id == @item.user_id 
   end
 
   def purchased_item
-    redirect_to root_path if Purchase.exists?(@item.id)
+    @purchased_item = @item.purchase
+    if @purchased_item
+      redirect_to root_path 
+    end
   end
 end
