@@ -15,31 +15,31 @@ RSpec.describe PurchaseForm, type: :model do
       it 'address_codeが空だと登録できない' do
         @purchase_form.address_code = ''
         @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages).to include "Address code can't be blank" && "Address code is invalid"
+        expect(@purchase_form.errors.full_messages).to include "Address code can't be blank" && 'Address code is invalid'
       end
 
       it 'address_codeが半角数字で入力されていない' do
         @purchase_form.address_code = '１９４−０４０３'
         @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages).to include "Address code is invalid"
+        expect(@purchase_form.errors.full_messages).to include 'Address code is invalid'
       end
 
       it 'address_codeにハイフンが含まれていない' do
         @purchase_form.address_code = '1940403'
         @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages).to include "Address code is invalid"
+        expect(@purchase_form.errors.full_messages).to include 'Address code is invalid'
       end
 
       it 'cityが空だと登録できない' do
         @purchase_form.city = ''
         @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages).to include "City can't be blank" && "City is invalid"
+        expect(@purchase_form.errors.full_messages).to include "City can't be blank" && 'City is invalid'
       end
 
       it 'cityにアルファベットが含まれていると登録できない' do
         @purchase_form.city = 'yokohamasi'
         @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages).to include "City is invalid"
+        expect(@purchase_form.errors.full_messages).to include 'City is invalid'
       end
 
       it 'address_numberが空だと登録できない' do
@@ -57,25 +57,35 @@ RSpec.describe PurchaseForm, type: :model do
       it 'telに半角数字以外が入力されると登録できない' do
         @purchase_form.tel = 'aaaaaaaaaaa'
         @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages).to include "Tel is invalid"
+        expect(@purchase_form.errors.full_messages).to include 'Tel is invalid'
       end
 
       it 'telが9桁以下で入力されると購入できない' do
         @purchase_form.tel = '090123456'
         @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages).to include "Tel is invalid"
+        expect(@purchase_form.errors.full_messages).to include 'Tel is invalid'
       end
 
       it 'prefectureが未選択だと購入できない' do
         @purchase_form.prefecture_id = 1
         @purchase_form.valid?
-        expect(@purchase_form.errors.full_messages).to include "Prefecture must be other than 1"
+        expect(@purchase_form.errors.full_messages).to include 'Prefecture must be other than 1'
       end
 
       it 'tokenが空では購入できないこと' do
         @purchase_form.token = nil
         @purchase_form.valid?
         expect(@purchase_form.errors.full_messages).to include "Token can't be blank"
+      end
+
+      it 'user_idが空では購入できない' do
+        @purchase_form.user_id = nil
+        @purchase_form.valid?
+      end
+
+      it 'item_idが空では購入できない' do
+        @purchase_form.item_id = nil
+        @purchase_form.valid?
       end
     end
   end
