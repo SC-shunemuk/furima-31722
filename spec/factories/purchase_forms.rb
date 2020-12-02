@@ -7,7 +7,7 @@ FactoryBot.define do
     tel                      { Faker::Number.number(digits: 10) }
     prefecture_id            { 2 }
     token                    { 'tok_abcdefghijk00000000000000000' }
-    user_id                  { 1 }
-    item_id                  { 1 }
+    association :item_id, factory: :item
+    association :user_id, factory: :user
   end
 end
