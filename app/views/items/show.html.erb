@@ -8,11 +8,11 @@
     </h2>
     <div class='item-img-content'>
       <%= image_tag @item.image ,class:"item-box-img" %>
-      <%# 商品が売れている場合は、sold outを表示しましょう %>
+      <% if @item.purchase != nil %>
       <div class='sold-out'>
         <span>Sold Out!!</span>
       </div>
-      <%# //商品が売れている場合は、sold outを表示しましょう %>
+      <% end %>
     </div>
     <div class="item-price-box">
       <span class="item-price">
@@ -22,6 +22,7 @@
         <%= @item.bear_price.name %>
       </span>
     </div>
+    <% unless  @item.purchase != nil %>
 
     <% if user_signed_in? && current_user.id == @item.user_id %>
 
@@ -34,6 +35,7 @@
     <% else %>
 
 
+    <% end %>
     <% end %>
 
     <div class="item-explain-box">
